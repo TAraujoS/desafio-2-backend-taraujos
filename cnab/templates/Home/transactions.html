@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CNAB TRANSACTIONS</h1>
+    <table>
+        <tr>
+          <th>Tipo de operação</th>
+          <th>Data</th>
+          <th>Código do lojista</th>
+          <th>Saldo em conta</th>
+          <th>Nome do lojista</th>
+          <th>Nome da loja</th>
+        </tr>
+        {% for operacao in operacoes %}
+        <tr>
+          <td>{{ operacao.tipo_operacao }}</td>
+          <td>{{ operacao.data_operacao }}</td>
+          <td>{{ operacao.codigo_lojista }}</td>
+          <td>{{ operacao.saldo_conta }}</td>
+          <td>{{ operacao.nome_lojista }}</td>
+          <td>{{ operacao.nome_loja }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      <p>Total de saldo: {{ total_saldo.saldo_conta__sum }}</p>
+</body>
+</html>
