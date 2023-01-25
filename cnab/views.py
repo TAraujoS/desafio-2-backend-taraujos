@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from rest_framework.views import APIView, Response, status, Request
+from rest_framework.views import APIView, Response, status
 from cnab.serializers import DocumentationSerializer, FileSerializer
 from .models import Documentation
 from .functions import updload_file
