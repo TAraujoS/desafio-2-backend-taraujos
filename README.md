@@ -4,6 +4,13 @@ This project was developed to receive the upload of a CNAB file, with data on th
 
 ---
 
+## Main Technologies:
+- Python
+- Django RestFramework
+- SQLite
+
+---
+
 ## How to Start:
 1- Create a virtual environment from your terminal:
 ```
@@ -24,14 +31,16 @@ pip install -r requirements.txt
 
 4- Configure the .env with the values of your machine:
 
-<br>
+---
 
-5- Run the migrations with the command:
+## Steps for running in a development environment:
+
+1- Run the migrations with the command:
 ```
 python manage.py migrate
 ```
 
-6- To run the server run the command:
+2- To run the server run the command:
 ```
 python manage.py runserver
 ```
