@@ -2,6 +2,7 @@ from rest_framework.views import APIView, Response, status
 from cnab.serializers import DocumentationSerializer, FileSerializer
 from .models import Documentation
 from .functions import updload_file
+import ipdb
 
 
 class DocumentationViews(APIView):
@@ -16,8 +17,15 @@ class DocumentationViews(APIView):
         return Response(serializer.data, status.HTTP_201_CREATED)
 
     def get(self, request):
-        transctions = Documentation.objects.all()
+        transactions = Documentation.objects.all()
+        serializer = DocumentationSerializer(transactions, many=True)
 
-        serializer = DocumentationSerializer(transctions, many=True)
+        total = 0
 
-        return Response(serializer.data)
+        for char in transactions:
+            if char.type in "239":
+                total -= char.value
+            else:
+                total += char.value
+
+        return Response({"data": serializer.data, "total_balance": total})

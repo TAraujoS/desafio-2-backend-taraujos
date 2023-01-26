@@ -11,8 +11,20 @@ def updload_file(file):
         owner = data[48:62].decode(encoding="utf-8", errors="strict")
         name = data[62:].decode(encoding="utf-8", errors="strict")
 
+        types = {
+            "1": "Débito",
+            "2": "Boleto",
+            "3": "Financiamento",
+            "4": "Crédito",
+            "5": "Recebimento Empréstimo",
+            "6": "Vendas",
+            "7": "Recebimento TED",
+            "8": "Recebimento DOC",
+            "9": "Aluguel",
+        }
+
         obj = {
-            "type": type,
+            "type": types[type],
             "date": date,
             "value": int(value) / 100,
             "cpf": cpf,
