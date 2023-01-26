@@ -34,13 +34,27 @@ pip install -r requirements.txt
 ---
 
 ## Steps for running in a development environment:
+1- In your .env put the HOST as localhost
 
-1- Run the migrations with the command:
+2- Run the migrations with the command:
 ```
 python manage.py migrate
 ```
 
-2- To run the server run the command:
+3- To run the server run the command:
 ```
 python manage.py runserver
 ```
+
+---
+
+## Steps to run with Docker:
+
+1- In your .env change the HOST to cnab_db
+
+2- In the terminal run the command to generate the Docker:
+```
+docker compose up
+```
+
+3- Enter http://127.0.0.1:8000/ in a browser to see the application running.
