@@ -1,5 +1,6 @@
 from rest_framework.views import APIView, Response, status
 from cnab.serializers import DocumentationSerializer, FileSerializer
+from django.db.models import Sum
 from .models import Documentation
 from .functions import updload_file
 import ipdb
@@ -17,15 +18,8 @@ class DocumentationViews(APIView):
         return Response(serializer.data, status.HTTP_201_CREATED)
 
     def get(self, request):
-        transactions = Documentation.objects.all()
-        serializer = DocumentationSerializer(transactions, many=True)
+        transactions = Documentation.objects.values(
+            "store_name", "store_owner"
+        ).annotate(total_balance=Sum("value"))
 
-        total = 0
-
-        for char in transactions:
-            if char.type in "239":
-                total -= char.value
-            else:
-                total += char.value
-
-        return Response({"data": serializer.data, "total_balance": total})
+        return Response({"store_balance": transactions})
